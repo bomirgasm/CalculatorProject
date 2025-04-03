@@ -22,18 +22,22 @@ class ViewController: UIViewController {
     }()
     
     // 버튼 타이틀 배열 (Lv2는 한 줄만)
-    private let buttonTitles: [String] = ["1", "2", "3", "+"]
+    private let buttonTitles: [[String]] = [
+        ["1", "2", "3", "+"],
+        ["4", "5", "6", "-"],
+        ["7", "8", "9", "*"],
+        ["AC", "0", "=", "/"]]
     
-    // 첫 줄 가로 스택뷰
-    private let horizontalStackView: UIStackView = {
+    // 세로 스택뷰
+    private let verticalStackView: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .horizontal
+        stack.axis = .vertical
         stack.spacing = 10
         stack.distribution = .fillEqually
-        stack.backgroundColor = .black
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +49,27 @@ class ViewController: UIViewController {
     
     // 라벨을 뷰에 추가
     private func setupUI() {
-        view.addSubview(expressionLabel)
-        view.addSubview(horizontalStackView)
         
-        // 버튼 추가
-        for title in buttonTitles {
-            let button = makeButton(title: title)
-            horizontalStackView.addArrangedSubview(button)
+        expressionLabel.backgroundColor = .black
+        expressionLabel.textColor = .white
+        expressionLabel.textAlignment = .right
+        expressionLabel.font = .boldSystemFont(ofSize: 60)
+        expressionLabel.text = "12345"
+        expressionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(expressionLabel)
+        view.addSubview(verticalStackView)
+        
+        
+        for row in buttonTitles {
+            let hStack = makeHorizontalStackView()
+            for title in row {
+                let button = makeButton(title: title)
+                hStack.addArrangedSubview(button)
+            }
+            verticalStackView.addArrangedSubview(hStack)
         }
+        
     }
     
     // 오토레이아웃 설정
@@ -63,10 +80,10 @@ class ViewController: UIViewController {
             expressionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             expressionLabel.heightAnchor.constraint(equalToConstant: 100),
             
-            horizontalStackView.topAnchor.constraint(equalTo: expressionLabel.bottomAnchor, constant: 60),
-            horizontalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            horizontalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            horizontalStackView.heightAnchor.constraint(equalToConstant: 80)
+            verticalStackView.topAnchor.constraint(equalTo: expressionLabel.bottomAnchor, constant: 60),
+            verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            verticalStackView.widthAnchor.constraint(equalToConstant: 350),
+            verticalStackView.heightAnchor.constraint(equalToConstant: (80 * 4 + 10 * 3)) // 버튼 4개 + spacing
         ])
     }
     
@@ -79,5 +96,13 @@ class ViewController: UIViewController {
         button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
         button.layer.cornerRadius = 40
         return button
+    }
+    
+    private func makeHorizontalStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.distribution = .fillEqually
+        return stack
     }
 }
