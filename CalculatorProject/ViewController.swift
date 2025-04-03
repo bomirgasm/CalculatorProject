@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         return label
     }()
     
-    // 버튼 타이틀 배열 (Lv2는 한 줄만)
+    // 버튼 타이틀 배열
     private let buttonTitles: [[String]] = [
         ["1", "2", "3", "+"],
         ["4", "5", "6", "-"],
@@ -87,13 +87,24 @@ class ViewController: UIViewController {
         ])
     }
     
+    private func isOperator(_ symbol: String) -> Bool {
+        return ["+", "-", "*", "/", "AC", "="].contains(symbol)
+    }
     
     private func makeButton(title: String) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 30)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        
+        //button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+
+        if isOperator(title) {
+            button.backgroundColor = .orange
+        } else {
+            button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        }
+
         button.layer.cornerRadius = 40
         return button
     }
