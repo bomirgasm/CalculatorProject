@@ -34,6 +34,12 @@ class ViewController: UIViewController {
     @objc private func buttonTapped(_ sender: UIButton) {
         guard let title = sender.currentTitle else { return }
 
+        //Lv7 AC 기능
+        if title == "AC" {
+            logic.clear()
+            calculatorView.expressionLabel.text = logic.expression
+            return
+        }
         //Lv6: 입력 추가 처리
         logic.append(title)
         calculatorView.expressionLabel.text = logic.expression

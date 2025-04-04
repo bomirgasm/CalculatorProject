@@ -19,4 +19,9 @@ class CalculatorLogic {
             expression += value
         }
     }
+    
+    //Lv6 AC 함수
+    func clear() {
+        expression = "0"
+    }
 }
