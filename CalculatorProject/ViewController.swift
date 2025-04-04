@@ -41,6 +41,14 @@ class ViewController: UIViewController {
             return
         }
         
+        //Lv8 연산 기능
+        if title == "=" {
+            let result = logic.calculate()
+            calculatorView.expressionLabel.text = result
+            logic.clear()  // 결과 출력 후 수식 초기화
+            return
+        }
+        
         //Lv6: 입력 추가 처리
         logic.append(title)
         calculatorView.expressionLabel.text = logic.expression
