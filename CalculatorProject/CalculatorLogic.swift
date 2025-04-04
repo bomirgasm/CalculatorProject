@@ -19,6 +19,15 @@ class CalculatorLogic {
             expression += value
         }
     }
+    /*//Lv8 계산 기능
+    func calculate() -> String {
+        let exp = NSExpression(format: expression)
+        if let result = exp.expressionValue(with: nil, context: nil) as? NSNumber {
+            return result.stringValue
+        } else {
+            return "Error"
+        }
+    }*/
     
     //Lv6 AC 함수
     func clear() {

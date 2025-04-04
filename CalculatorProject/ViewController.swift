@@ -40,6 +40,7 @@ class ViewController: UIViewController {
             calculatorView.expressionLabel.text = logic.expression
             return
         }
+        
         //Lv6: 입력 추가 처리
         logic.append(title)
         calculatorView.expressionLabel.text = logic.expression
