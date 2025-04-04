@@ -18,7 +18,7 @@
 - [x] Lv8: `=` 버튼 계산 처리
 
 
-# 🧮 iOS 계산기 앱 (CalculatorProject)
+# iOS 계산기 앱 (CalculatorProject)
 
 ## 프로젝트 개요
 
