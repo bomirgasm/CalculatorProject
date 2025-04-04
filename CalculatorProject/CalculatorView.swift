@@ -33,7 +33,7 @@ class CalculatorView: UIView {
     }
 
     private func setupLabel() {
-        expressionLabel.text = "12345"
+        expressionLabel.text = "0"
         expressionLabel.textAlignment = .right
         expressionLabel.font = .boldSystemFont(ofSize: 60)
         expressionLabel.textColor = .white
